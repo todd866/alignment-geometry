@@ -76,7 +76,7 @@ pdflatex alignment_geometry.tex
   author={Todd, Ian},
   journal={Information Geometry},
   year={2025},
-  note={Submitted}
+  note={In preparation}
 }
 ```
 
