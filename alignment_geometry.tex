@@ -80,16 +80,20 @@ The relationship $r = I_1(\kappa)/I_0(\kappa)$ provides a bijection between the 
 
 \subsection{Fisher Information on the Circle}
 
-The Fisher information for the von Mises family with respect to $\kappa$ is:
+The Fisher information for the von Mises family with respect to $\kappa$ is the variance of the score:
 \begin{equation}
-I(\kappa) = \mathbb{E}\left[\left(\frac{\partial \log p}{\partial \kappa}\right)^2\right] = \frac{I_2(\kappa)}{I_0(\kappa)} - \left(\frac{I_1(\kappa)}{I_0(\kappa)}\right)^2 = A(\kappa) - r^2
+I(\kappa) = \mathbb{E}\left[\left(\frac{\partial \log p}{\partial \kappa}\right)^2\right] = \mathrm{Var}(\cos\theta) = \mathbb{E}[\cos^2\theta] - r^2
 \end{equation}
-where $A(\kappa) = I_2(\kappa)/I_0(\kappa)$. Using the Bessel recurrence $I_2(\kappa) = I_0(\kappa) - (2/\kappa)I_1(\kappa)$:
+Using $\cos^2\theta = (1 + \cos 2\theta)/2$ and $\mathbb{E}[\cos n\theta] = I_n(\kappa)/I_0(\kappa)$:
 \begin{equation}
-I(\kappa) = 1 - \frac{2r}{\kappa} - r^2 = 1 - r\left(\frac{2}{\kappa} + r\right)
+I(\kappa) = \frac{1}{2}\left(1 + \frac{I_2(\kappa)}{I_0(\kappa)}\right) - r^2
+\end{equation}
+Applying the Bessel recurrence $I_2(\kappa) = I_0(\kappa) - (2/\kappa)I_1(\kappa)$:
+\begin{equation}
+I(\kappa) = 1 - \frac{r}{\kappa} - r^2
 \end{equation}
 
-For large $\kappa$ (high concentration), $r \to 1$ and $I(\kappa) \to 0$: highly concentrated distributions are easy to distinguish from slight perturbations in $\kappa$. For small $\kappa$ (near uniform), $r \to 0$ and $I(\kappa) \to 1$.
+For small $\kappa$ (near uniform), $r \to 0$ and $I(\kappa) \to 1$: samples are maximally informative about $\kappa$. For large $\kappa$ (high concentration), $r \to 1$ and $I(\kappa) \to 0$: the distribution is nearly deterministic, so samples provide little information about small changes in $\kappa$.
 
 \begin{remark}[Fisher information and circular variance]
 The circular variance is $V = 1 - r$. High Fisher information (near 1) corresponds to high circular variance (diffuse distribution); low Fisher information corresponds to low circular variance (concentrated distribution). This inverse relationship connects statistical distinguishability to phase dispersion.
@@ -124,9 +128,9 @@ p_1(\varepsilon, 0) = \frac{\varepsilon}{2\pi}
 \end{equation}
 exactly, for any $\varepsilon \leq 2\pi$.
 
-\textbf{High concentration ($\kappa \gg 1$).} For large $\kappa$, the von Mises distribution approaches a wrapped Gaussian with variance $1/\kappa$. The Gaussian approximation gives:
+\textbf{High concentration ($\kappa \gg 1$).} For large $\kappa$, the von Mises distribution approaches a wrapped Gaussian with variance $1/\kappa$ (standard deviation $\sigma = 1/\sqrt{\kappa}$). Integrating from $-\varepsilon/2$ to $\varepsilon/2$:
 \begin{equation}
-p_1(\varepsilon, \kappa) \approx \text{erf}\left(\frac{\varepsilon\sqrt{\kappa}}{2}\right) = \frac{2}{\sqrt{\pi}}\int_0^{\varepsilon\sqrt{\kappa}/2} e^{-t^2}\,dt
+p_1(\varepsilon, \kappa) \approx \text{erf}\left(\frac{\varepsilon\sqrt{\kappa}}{2\sqrt{2}}\right)
 \end{equation}
 For $\varepsilon\sqrt{\kappa} \gg 1$, this saturates: $p_1 \to 1$.
 
@@ -168,9 +172,9 @@ The statistical manifold is the product $\mathcal{P}^M = \mathcal{P}_1 \times \c
 
 Define the \emph{alignment region} $A_\varepsilon \subset T^M$ as:
 \begin{equation}
-A_\varepsilon = \{(\theta_1, \ldots, \theta_M) : |\theta_i - \theta_j| < \varepsilon \text{ for all } i, j\}
+A_\varepsilon = \{(\theta_1, \ldots, \theta_M) : |\theta_i - \theta_1| < \varepsilon/2 \text{ for } i = 2, \ldots, M\}
 \end{equation}
-This is the set where all phases lie within $\varepsilon$ of each other---a ``diagonal band'' in the torus. Throughout, $\varepsilon$ denotes the \textbf{full window width}, so that individual phases must lie within $\pm\varepsilon/2$ of the reference.
+This is the set where all phases lie within $\varepsilon/2$ of the reference phase $\theta_1$---equivalently, all phases lie within a window of width $\varepsilon$ centered on the reference. Throughout, $\varepsilon$ denotes the \textbf{full window width}.
 
 \begin{remark}[Rotational invariance]
 The alignment region $A_\varepsilon$ is invariant under the diagonal $S^1$ action: $(\theta_1, \ldots, \theta_M) \mapsto (\theta_1 + \phi, \ldots, \theta_M + \phi)$ for any $\phi \in S^1$. This symmetry is crucial for the $(M-1)$ exponent.
@@ -208,7 +212,7 @@ This map is well-defined modulo $2\pi$, smooth, and surjective. The fibers $\pi^
 The coordinates $\psi_i = \theta_{i+1} - \theta_1$ for $i = 1, \ldots, M-1$ provide a global chart on $T^{M-1}$. In these coordinates:
 
 \begin{itemize}
-    \item The alignment region becomes $\{|\psi_i| < \varepsilon : i = 1, \ldots, M-1\}$
+    \item The alignment region becomes $\{|\psi_i| < \varepsilon/2 : i = 1, \ldots, M-1\}$
     \item The product measure on $T^M$ descends to a measure on $T^{M-1}$ (after integrating out the global phase)
     \item The alignment probability in quotient coordinates is exactly $p_1(\varepsilon, \kappa)^{M-1}$
 \end{itemize}
@@ -217,10 +221,10 @@ The coordinates $\psi_i = \theta_{i+1} - \theta_1$ for $i = 1, \ldots, M-1$ prov
 
 The alignment region $A_\varepsilon \subset T^M$ has dimension $M$ (it is an open set). However, it is invariant under the $S^1$ action, so its image in $T^{M-1}$ has dimension $M-1$.
 
-Alternatively: the alignment constraint imposes $M-1$ independent conditions (all pairwise differences $|\theta_i - \theta_j| < \varepsilon$ are equivalent to $|\psi_i| < \varepsilon$ for $i = 1, \ldots, M-1$). This gives codimension $M-1$ in $T^M$, or equivalently, dimension 1 (the free global phase).
+Alternatively: the alignment constraint imposes $M-1$ independent conditions ($|\theta_i - \theta_1| < \varepsilon/2$ for $i = 2, \ldots, M$, or equivalently $|\psi_i| < \varepsilon/2$ for $i = 1, \ldots, M-1$). This gives codimension $M-1$ in $T^M$, or equivalently, dimension 1 (the free global phase).
 
 \begin{remark}[Why $(M-1)$, not $\binom{M}{2}$]
-There are $\binom{M}{2}$ pairwise constraints $|\theta_i - \theta_j| < \varepsilon$, but these are not independent. Given $\theta_1$ as reference, the constraints $|\theta_i - \theta_1| < \varepsilon$ for $i = 2, \ldots, M$ imply $|\theta_i - \theta_j| < 2\varepsilon$ by the triangle inequality. The $M-1$ reference-based constraints determine the alignment (up to window width).
+One might expect $\binom{M}{2}$ constraints (all pairwise differences small), but these are not independent. Using $\theta_1$ as reference, the $M-1$ constraints $|\theta_i - \theta_1| < \varepsilon/2$ imply $|\theta_i - \theta_j| < \varepsilon$ by the triangle inequality. The $M-1$ reference-based constraints fully determine the alignment event.
 \end{remark}
 
 %==============================================================================
@@ -400,21 +404,21 @@ The correction $\beta = 1 - \alpha$ depends on:
 
 \begin{table}[ht]
 \centering
-\caption{Qualitative $\alpha$ regimes by topology (schematic)}
+\caption{Qualitative $\alpha$ regimes by inter-module coupling (schematic)}
 \label{tab:alpha}
 \begin{tabular}{lcc}
 \toprule
-Topology & Inter-module structure & Predicted $\alpha$ \\
+Regime & Inter-module coupling & Predicted $\alpha$ \\
 \midrule
-Modular (weak inter) & Sparse, weak & $\alpha \approx 1$ (near-independent) \\
-Modular (moderate inter) & Sparse, moderate & $\alpha \approx 0.3$--$0.5$ \\
-All-to-all & Dense, strong & $\alpha \approx 0.5$--$0.8$ \\
-Sparse random & Very sparse & $\alpha \approx 0.2$--$0.4$ \\
+Independent modules & None & $\alpha = 1$ (exact) \\
+Weak inter-module & Few connections, weak & $\alpha \approx 0.7$--$0.9$ \\
+Moderate inter-module & Sparse, moderate strength & $\alpha \approx 0.4$--$0.6$ \\
+Strong inter-module & Dense or strong & $\alpha \approx 0.2$--$0.4$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\noindent These are order-of-magnitude expectations based on the perturbative analysis, not formal bounds; exact values depend on specific coupling parameters.
+\noindent These are order-of-magnitude expectations based on the perturbative analysis, not formal bounds; exact values depend on specific coupling parameters. The key principle: stronger inter-module coupling $\Rightarrow$ stronger correlation $\Rightarrow$ lower effective exponent $\alpha$.
 
 This explains the empirically observed variation in $\alpha$ across topologies: the parameter captures how much inter-module correlation deviates from the independent-product baseline.
 
@@ -536,25 +540,25 @@ Consider strongly synchronized modules ($\kappa = 10$, near-Gaussian) with weak 
 
 \textbf{Single-window probability} (Gaussian approximation):
 \begin{equation}
-p_1(\pi/3, 10) \approx \text{erf}\left(\frac{(\pi/3)\sqrt{10}}{2}\right) = \text{erf}(1.66) \approx 0.98
+p_1(\pi/3, 10) \approx \text{erf}\left(\frac{(\pi/3)\sqrt{10}}{2\sqrt{2}}\right) = \text{erf}(1.17) \approx 0.90
 \end{equation}
 
 \textbf{Alignment probability without coupling} ($\alpha = 1$):
 \begin{equation}
-P_{\alpha=1} = (0.98)^7 \approx 0.87
+P_{\alpha=1} = (0.90)^7 \approx 0.48
 \end{equation}
 
 \textbf{Alignment probability with coupling} ($\alpha = 0.4$):
 \begin{equation}
-P_{\alpha=0.4} = (0.98)^{0.4 \times 7} = (0.98)^{2.8} \approx 0.94
+P_{\alpha=0.4} = (0.90)^{0.4 \times 7} = (0.90)^{2.8} \approx 0.75
 \end{equation}
 
-The coupling correction increases alignment probability from 87\% to 94\%---a modest effect when $p_1$ is already high, but the relative change in $\log P$ is significant:
+The coupling correction increases alignment probability from 48\% to 75\%---the reduction in effective exponent from 7 to 2.8 substantially eases alignment. The relative change in $\log P$:
 \begin{equation}
-\frac{\log P_{\alpha=0.4}}{\log P_{\alpha=1}} = \frac{0.4 \times 7 \times \log(0.98)}{7 \times \log(0.98)} = 0.4
+\frac{\log P_{\alpha=0.4}}{\log P_{\alpha=1}} = \frac{0.4 \times 7 \times \log(0.90)}{7 \times \log(0.90)} = 0.4
 \end{equation}
 
-For lower $p_1$ (harder alignment), the coupling correction has larger absolute effect.
+For lower $p_1$ (harder alignment), the coupling correction has even larger absolute effect.
 
 \subsection{Scaling Summary}
 
@@ -571,7 +575,7 @@ $M$ & $\kappa$ & $\varepsilon$ & $p_1$ & $P(A_\varepsilon) = p_1^{M-1}$ \\
 3 & 3 & $\pi/6$ & 0.25 & 0.063 \\
 5 & 0 & $\pi/6$ & 0.083 & $4.8\times 10^{-5}$ \\
 5 & 3 & $\pi/6$ & 0.25 & 0.0039 \\
-5 & 10 & $\pi/6$ & 0.78 & 0.37 \\
+5 & 10 & $\pi/6$ & 0.59 & 0.12 \\
 8 & 3 & $\pi/4$ & 0.32 & 0.0011 \\
 10 & 0 & $\pi/4$ & 0.125 & $1.9\times 10^{-9}$ \\
 \bottomrule
