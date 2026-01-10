@@ -27,7 +27,7 @@ Sydney, NSW, Australia\\
 \maketitle
 
 \begin{abstract}
-We study the probability of simultaneous alignment events on product statistical manifolds, with applications to synchronization in coupled oscillator systems. For $M$ random variables drawn independently from a common exponential family on the circle (von Mises distributions with concentration $\kappa$), the probability that all variables fall within tolerance $\varepsilon$ of each other scales as $p_1(\varepsilon, \kappa)^{M-1}$, where $p_1$ is the single-variable window probability. The exponent $(M-1)$ rather than $M$ arises from quotient geometry: alignment is invariant under global rotation, so the constraint has \emph{codimension} $M-1$ in the $M$-torus after quotienting by the diagonal $S^1$ action. We prove this product formula, characterize the single-variable probability $p_1$ in terms of Fisher information on the circle, and derive the resulting scaling law for expected hitting times: $\tau \propto p_1^{-(M-1)}$. The framework provides a coordinate-invariant foundation for understanding how ``coordination depth'' (the number of components requiring simultaneous alignment) determines waiting times in stochastic systems. Applications include neural synchronization, molecular coordination, and distributed consensus.
+We study the probability of simultaneous alignment events on product statistical manifolds, with applications to synchronization in coupled oscillator systems. For $M$ random variables drawn independently from a common exponential family on the circle (von Mises distributions with concentration $\kappa$), the probability that all variables fall within tolerance $\varepsilon$ of each other scales as $(\varepsilon/2\pi)^{M-1} \cdot I_0(M\kappa)/I_0(\kappa)^M$ in the small-window limit. The exponent $(M-1)$ rather than $M$ arises from quotient geometry: alignment is invariant under global rotation, so the constraint has \emph{codimension} $M-1$ in the $M$-torus after quotienting by the diagonal $S^1$ action. The Bessel factor $I_0(M\kappa)/I_0(\kappa)^M$ captures concentration-induced enhancement beyond the geometric baseline. We prove this formula via an integral representation that properly accounts for the non-rotation-invariant von Mises measure, and derive the resulting scaling law for expected hitting times: $\tau \propto (2\pi/\varepsilon)^{M-1}$, exponential in coordination depth. The framework provides a coordinate-invariant foundation for understanding how ``coordination depth'' determines waiting times in stochastic systems. Applications include neural synchronization, molecular coordination, and distributed consensus.
 \end{abstract}
 
 \medskip
@@ -42,13 +42,13 @@ Many physical and biological systems require \emph{simultaneous alignment} of mu
 This paper provides an information-geometric answer. We consider $M$ random variables drawn independently from a common distribution on the circle (specifically, the von Mises exponential family). The \emph{alignment event} is the simultaneous occurrence of all variables within a tolerance window $\varepsilon$ of each other. We prove:
 
 \begin{enumerate}
-    \item The alignment probability factorizes as $P(\text{align}) = p_1(\varepsilon, \kappa)^{M-1}$, where $p_1$ is the single-variable window probability and $\kappa$ is the concentration parameter.
+    \item The alignment probability is given by $P(A_\varepsilon) \approx (\varepsilon/2\pi)^{M-1} \cdot I_0(M\kappa)/I_0(\kappa)^M$ in the small-window limit, where $I_0$ is the modified Bessel function and $\kappa$ is the concentration parameter.
 
     \item The exponent is $(M-1)$ rather than $M$ because alignment is invariant under global rotation: we quotient by the $S^1$ action, reducing the constraint codimension by one.
 
-    \item The single-variable probability $p_1(\varepsilon, \kappa)$ is determined by the Fisher information geometry of the von Mises family, connecting alignment rates to statistical distinguishability.
+    \item The Bessel factor $I_0(M\kappa)/I_0(\kappa)^M$ captures how concentration enhances alignment beyond the geometric baseline, connecting alignment rates to the Fisher information geometry of the von Mises family.
 
-    \item Expected hitting times scale as $\tau \propto p_1^{-(M-1)}$, exponential in coordination depth $M$.
+    \item Expected hitting times scale as $\tau \propto (2\pi/\varepsilon)^{M-1}$, exponential in coordination depth $M$.
 \end{enumerate}
 
 The coordinate-invariant nature of this result---expressed in terms of Fisher information and manifold dimension---makes it applicable across substrates: neural oscillators, molecular rotors, or abstract phase variables.
@@ -93,10 +93,10 @@ Applying the Bessel recurrence $I_2(\kappa) = I_0(\kappa) - (2/\kappa)I_1(\kappa
 I(\kappa) = 1 - \frac{r}{\kappa} - r^2
 \end{equation}
 
-For small $\kappa$ (near uniform), $r \to 0$ and $I(\kappa) \to 1$: samples are maximally informative about $\kappa$. For large $\kappa$ (high concentration), $r \to 1$ and $I(\kappa) \to 0$: the distribution is nearly deterministic, so samples provide little information about small changes in $\kappa$.
+For small $\kappa$ (near uniform), $r \approx \kappa/2$ so $r/\kappa \to 1/2$ and $I(\kappa) \to 1/2$: samples have moderate informativeness. For large $\kappa$ (high concentration), $r \to 1$ and $I(\kappa) \to 0$: the distribution is nearly deterministic, so samples provide little information about small changes in $\kappa$.
 
 \begin{remark}[Fisher information and circular variance]
-The circular variance is $V = 1 - r$. High Fisher information (near 1) corresponds to high circular variance (diffuse distribution); low Fisher information corresponds to low circular variance (concentrated distribution). This inverse relationship connects statistical distinguishability to phase dispersion.
+The circular variance is $V = 1 - r$. Higher Fisher information (toward $1/2$) corresponds to high circular variance (diffuse distribution); low Fisher information (toward $0$) corresponds to low circular variance (concentrated distribution). This inverse relationship connects statistical distinguishability to phase dispersion.
 \end{remark}
 
 \subsection{Window Probability}
@@ -235,38 +235,110 @@ One might expect $\binom{M}{2}$ constraints (all pairwise differences small), bu
 \label{thm:alignment}
 Let $\theta_1, \ldots, \theta_M$ be independent von Mises random variables with common concentration $\kappa$. The probability that all phases lie within $\varepsilon$ of each other is:
 \begin{equation}
-P(A_\varepsilon) = p_1(\varepsilon, \kappa)^{M-1}
+P(A_\varepsilon) = \int_{-\pi}^{\pi} p(\theta; \kappa) \, w(\theta; \varepsilon, \kappa)^{M-1} \, d\theta
+\label{eq:exact-alignment}
 \end{equation}
-where $p_1(\varepsilon, \kappa)$ is the single-variable window probability.
+where $w(\theta; \varepsilon, \kappa) = \int_{\theta-\varepsilon/2}^{\theta+\varepsilon/2} p(\phi; \kappa) \, d\phi$ is the probability that a sample falls within $\varepsilon/2$ of the reference value $\theta$.
 \end{theorem}
 
 \begin{proof}
-By rotational invariance, we may condition on $\theta_1 = 0$ (or equivalently, use $\theta_1$ as the reference phase). The alignment event $A_\varepsilon$ then requires each of $\theta_2, \ldots, \theta_M$ to lie in the window $(-\varepsilon/2, \varepsilon/2)$.
-
-Since the $\theta_i$ are independent and identically distributed:
+The alignment event $A_\varepsilon = \{|\theta_i - \theta_1| < \varepsilon/2 \text{ for } i = 2, \ldots, M\}$ uses $\theta_1$ as the reference. By the law of total probability:
 \begin{align}
-P(A_\varepsilon) &= P(\theta_2 \in (-\varepsilon/2, \varepsilon/2), \ldots, \theta_M \in (-\varepsilon/2, \varepsilon/2) \,|\, \theta_1 = 0) \\
-&= \prod_{i=2}^M P(\theta_i \in (-\varepsilon/2, \varepsilon/2)) \\
-&= p_1(\varepsilon, \kappa)^{M-1}
+P(A_\varepsilon) &= \int_{-\pi}^{\pi} P(A_\varepsilon \,|\, \theta_1 = \theta) \, p(\theta; \kappa) \, d\theta \\
+&= \int_{-\pi}^{\pi} p(\theta; \kappa) \prod_{i=2}^{M} P(|\theta_i - \theta| < \varepsilon/2) \, d\theta \\
+&= \int_{-\pi}^{\pi} p(\theta; \kappa) \, w(\theta; \varepsilon, \kappa)^{M-1} \, d\theta
 \end{align}
-The exponent is $(M-1)$ because $\theta_1$ serves as the reference; only the remaining $M-1$ phases must independently fall within the tolerance window.
+The exponent is $(M-1)$ because $\theta_1$ serves as the reference; the remaining $M-1$ phases must independently fall within the tolerance window centered at the (random) reference.
 \end{proof}
+
+\begin{remark}[Why not simply $p_1^{M-1}$?]
+A simpler formula $P(A_\varepsilon) = p_1(\varepsilon, \kappa)^{M-1}$ would hold if we could ``condition on $\theta_1 = 0$ by rotational invariance.'' However, while the \emph{event} $A_\varepsilon$ is rotation-invariant, the von Mises \emph{measure} is not (it concentrates around $\mu = 0$). The integral in Eq.~\ref{eq:exact-alignment} properly accounts for the distribution of the reference phase.
+\end{remark}
+
+\subsection{Small-Window Asymptotics}
+
+For small $\varepsilon$, the window probability $w(\theta; \varepsilon, \kappa) \approx \varepsilon \cdot p(\theta; \kappa)$, yielding:
+
+\begin{corollary}[Small-window scaling]
+\label{cor:small-window}
+For $\varepsilon \to 0$:
+\begin{equation}
+P(A_\varepsilon) \approx \varepsilon^{M-1} \int_{-\pi}^{\pi} p(\theta; \kappa)^M \, d\theta
+\label{eq:small-window}
+\end{equation}
+The $(M-1)$ exponent on $\varepsilon$ reflects the codimension of the alignment constraint.
+\end{corollary}
+
+\begin{proof}
+Substitute $w(\theta) \approx \varepsilon \, p(\theta)$ into Eq.~\ref{eq:exact-alignment}:
+\begin{equation}
+P(A_\varepsilon) \approx \int p(\theta) \, [\varepsilon \, p(\theta)]^{M-1} d\theta = \varepsilon^{M-1} \int p(\theta)^M \, d\theta
+\end{equation}
+\end{proof}
+
+\subsection{Closed Form for Von Mises}
+
+The integral $\int p(\theta; \kappa)^M d\theta$ has a beautiful closed form:
+
+\begin{proposition}[Bessel representation]
+\label{prop:bessel}
+For von Mises distributions:
+\begin{equation}
+\int_{-\pi}^{\pi} p(\theta; \kappa)^M \, d\theta = \frac{I_0(M\kappa)}{(2\pi)^{M-1} I_0(\kappa)^M}
+\label{eq:bessel-integral}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Substituting $p(\theta; \kappa) = e^{\kappa \cos\theta}/(2\pi I_0(\kappa))$:
+\begin{align}
+\int_{-\pi}^{\pi} p(\theta; \kappa)^M \, d\theta &= \frac{1}{(2\pi I_0(\kappa))^M} \int_{-\pi}^{\pi} e^{M\kappa \cos\theta} \, d\theta \\
+&= \frac{2\pi I_0(M\kappa)}{(2\pi)^M I_0(\kappa)^M} = \frac{I_0(M\kappa)}{(2\pi)^{M-1} I_0(\kappa)^M}
+\end{align}
+\end{proof}
+
+Combining Corollary~\ref{cor:small-window} and Proposition~\ref{prop:bessel}:
+
+\begin{corollary}[Explicit alignment probability]
+\label{cor:explicit}
+For small $\varepsilon$ and von Mises phases:
+\begin{equation}
+\boxed{P(A_\varepsilon) \approx \left(\frac{\varepsilon}{2\pi}\right)^{M-1} \cdot \frac{I_0(M\kappa)}{I_0(\kappa)^M}}
+\label{eq:main-result}
+\end{equation}
+\end{corollary}
+
+This is the main quantitative result. The alignment probability factors into:
+\begin{itemize}
+    \item A \textbf{geometric term} $(\varepsilon/2\pi)^{M-1}$: the uniform baseline, with exponent $(M-1)$ from the quotient geometry
+    \item A \textbf{concentration term} $I_0(M\kappa)/I_0(\kappa)^M$: enhancement from phase concentration
+\end{itemize}
+
+\begin{remark}[Limiting cases]
+\textbf{Uniform ($\kappa = 0$):} $I_0(0) = 1$, so $P(A_\varepsilon) = (\varepsilon/2\pi)^{M-1}$, recovering the geometric baseline.
+
+\textbf{High concentration ($\kappa \gg 1$):} Using $I_0(\kappa) \sim e^\kappa/\sqrt{2\pi\kappa}$:
+\begin{equation}
+\frac{I_0(M\kappa)}{I_0(\kappa)^M} \sim \frac{e^{M\kappa}/\sqrt{2\pi M\kappa}}{e^{M\kappa}/(2\pi\kappa)^{M/2}} = \frac{(2\pi\kappa)^{M/2}}{\sqrt{2\pi M\kappa}} \sim \left(\frac{2\pi\kappa}{M}\right)^{(M-1)/2}
+\end{equation}
+The concentration term grows with $\kappa$, substantially enhancing alignment probability.
+\end{remark}
 
 \begin{corollary}[Hitting time scaling]
 \label{cor:hitting}
 If phases explore the circle at rate $\Delta\omega$ (e.g., via diffusion or frequency mismatch), the expected hitting time to alignment satisfies:
 \begin{equation}
-\mathbb{E}[\tau] \propto \frac{1}{\Delta\omega} \cdot p_1(\varepsilon, \kappa)^{-(M-1)}
+\mathbb{E}[\tau] \propto \frac{1}{\Delta\omega} \cdot \left(\frac{2\pi}{\varepsilon}\right)^{M-1} \cdot \frac{I_0(\kappa)^M}{I_0(M\kappa)}
 \end{equation}
-Equivalently, $\log \mathbb{E}[\tau] \propto (M-1) \log(1/p_1)$: logarithmic hitting time is linear in coordination depth.
+Equivalently, $\log \mathbb{E}[\tau] \propto (M-1) \log(2\pi/\varepsilon) + M\log I_0(\kappa) - \log I_0(M\kappa)$: logarithmic hitting time is linear in coordination depth $(M-1)$.
 \end{corollary}
 
 \begin{proof}
-For a renewal process with success probability $p$ per attempt and attempt rate $\Delta\omega$, the expected waiting time is $\mathbb{E}[\tau] = 1/(\Delta\omega \cdot p)$. Substituting $p = P(A_\varepsilon) = p_1^{M-1}$ yields the result.
+For a renewal process with success probability $p$ per attempt and attempt rate $\Delta\omega$, the expected waiting time is $\mathbb{E}[\tau] = 1/(\Delta\omega \cdot p)$. Substituting $p = P(A_\varepsilon)$ from Eq.~\ref{eq:main-result} yields the result.
 \end{proof}
 
 \begin{remark}[Geometric interpretation]
-The $(M-1)$ exponent has a clean geometric meaning: the alignment constraint removes $M-1$ degrees of freedom from the $M$-torus. Equivalently, after quotienting by global rotation, the relative-phase space is $(M-1)$-dimensional, and alignment requires all $M-1$ relative phases to independently satisfy a window constraint.
+The $(M-1)$ exponent has a clean geometric meaning: the alignment constraint removes $M-1$ degrees of freedom from the $M$-torus. Equivalently, after quotienting by global rotation, the relative-phase space is $(M-1)$-dimensional. The Bessel factor $I_0(M\kappa)/I_0(\kappa)^M$ captures how concentration enhances alignment beyond the geometric baseline.
 \end{remark}
 
 %==============================================================================
@@ -592,13 +664,13 @@ The dominant effect is the exponential penalty in $M$. Increasing concentration 
 
 This paper provides:
 \begin{enumerate}
-    \item A rigorous derivation of the $(M-1)$ exponent for alignment probabilities on product manifolds (Theorem~\ref{thm:alignment})
+    \item A rigorous derivation of alignment probability via an integral representation (Theorem~\ref{thm:alignment}) that properly accounts for the non-rotation-invariant von Mises measure
 
-    \item A geometric explanation: the exponent equals the codimension of the alignment constraint after quotienting by global rotation
+    \item The explicit formula $P(A_\varepsilon) \approx (\varepsilon/2\pi)^{M-1} \cdot I_0(M\kappa)/I_0(\kappa)^M$ (Corollary~\ref{cor:explicit}), with the $(M-1)$ exponent arising from quotient geometry
 
-    \item Connection to Fisher information: alignment rates are determined by the statistical geometry of the component distributions
+    \item Connection to Fisher information: the Bessel factor captures concentration-induced enhancement beyond the geometric baseline
 
-    \item Hitting time scaling (Corollary~\ref{cor:hitting}): $\tau \propto p_1^{-(M-1)}$, exponential in coordination depth
+    \item Hitting time scaling (Corollary~\ref{cor:hitting}): $\tau \propto (2\pi/\varepsilon)^{M-1}$, exponential in coordination depth
 \end{enumerate}
 
 \subsection{Applications}
@@ -648,9 +720,9 @@ P(A_\varepsilon) = \prod_{i=2}^M p_1(\varepsilon, \kappa_i)
 \section{Conclusion}
 %==============================================================================
 
-The probability of simultaneous alignment across $M$ independent circular random variables scales as $p_1^{M-1}$, where $p_1$ is the single-component window probability. The exponent $(M-1)$---not $M$---arises from the quotient geometry: one component serves as reference, leaving $M-1$ independent constraints. This provides a coordinate-invariant, information-geometric foundation for understanding how coordination depth determines waiting times in stochastic systems.
+The probability of simultaneous alignment across $M$ independent circular random variables scales as $(\varepsilon/2\pi)^{M-1} \cdot I_0(M\kappa)/I_0(\kappa)^M$ in the small-window limit. The exponent $(M-1)$---not $M$---arises from the quotient geometry: one component serves as reference, leaving $M-1$ independent constraints. The Bessel factor captures concentration-induced enhancement. This provides a coordinate-invariant, information-geometric foundation for understanding how coordination depth determines waiting times in stochastic systems.
 
-The key insight is that ``coordination depth'' is a geometric quantity: it counts the codimension of the alignment constraint on the product manifold. Fisher information enters through the single-component window probability, connecting statistical distinguishability to alignment rates.
+The key insight is that ``coordination depth'' is a geometric quantity: it counts the codimension of the alignment constraint on the product manifold. The exact formula requires an integral representation (Theorem~\ref{thm:alignment}) that properly accounts for the non-rotation-invariant von Mises measure---a subtlety that naive ``condition on reference'' arguments miss.
 
 \vspace{2em}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.12)  5 JAN 2026 21:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.11.12)  6 JAN 2026 06:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -325,8 +325,7 @@ ef
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count302
 \l__pdf_internal_box=\box54
-)
-No file alignment_geometry.aux.
+) (./alignment_geometry.aux)
 \openout1 = `alignment_geometry.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
@@ -347,6 +346,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 25.
 LaTeX Font Info:    ... okay on input line 25.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 25.
 LaTeX Font Info:    ... okay on input line 25.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -406,12 +406,14 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package hyperref Info: Link coloring OFF on input line 25.
+ (./alignment_geometry.out) (./alignment_geometry.out)
 \@outlinefile=\write3
 \openout3 = `alignment_geometry.out'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
 
- (/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
@@ -425,32 +427,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/usr/local/texlive/2025basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Citation `mardia2000directional' on page 2 undefined on input li
-ne 58.
-
-
-LaTeX Warning: Citation `amari2016information' on page 2 undefined on input lin
-e 58.
-
-
-LaTeX Warning: Citation `strogatz2000kuramoto' on page 2 undefined on input lin
-e 58.
-
-
-LaTeX Warning: Citation `acebron2005kuramoto' on page 2 undefined on input line
- 58.
-
-
-LaTeX Warning: Citation `mardia2000directional' on page 2 undefined on input li
-ne 66.
-
-
-
 [2]
-
-LaTeX Warning: Citation `mardia2000directional' on page 3 undefined on input li
-ne 79.
-
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 115.
@@ -499,36 +476,62 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [6]
 
+LaTeX Warning: Reference `eq:exact-alignment' on page 7 undefined on input line
+ 255.
+
+
+LaTeX Warning: Reference `eq:exact-alignment' on page 7 undefined on input line
+ 273.
+
+
+LaTeX Warning: Reference `cor:small-window' on page 7 undefined on input line 3
+00.
+
+
+LaTeX Warning: Reference `prop:bessel' on page 7 undefined on input line 300.
+
+
+
 [7]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 310.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\alpha' on input line 310.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 310.
+LaTeX Warning: Reference `eq:main-result' on page 8 undefined on input line 337
+.
 
 
 
 [8]
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 382.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\alpha' on input line 382.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 382.
+
+
+
 [9]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 396.
-
+[10]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\alpha' on input line 396.
+(hyperref)                removing `math shift' on input line 468.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 396.
+(hyperref)                removing `\alpha' on input line 468.
 
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 468.
+
+
+
+[11]
 
 ! LaTeX Error: Unicode character α (U+03B1)
                not set up for use with LaTeX.
@@ -537,43 +540,29 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.429 ...proposition}[α as correlation dimension]
+l.501 ...proposition}[α as correlation dimension]
                                                   
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 
 
-[10]
-
-LaTeX Warning: Reference `prop:alpha' on page 11 undefined on input line 482.
-
-
-
-[11]
-
 [12]
-
-LaTeX Warning: Reference `thm:alignment' on page 13 undefined on input line 595
-.
-
-
 
 [13]
 
-LaTeX Warning: Reference `cor:hitting' on page 14 undefined on input line 601.
-
-
-
 [14]
 
-LaTeX Warning: Reference `prop:alpha' on page 15 undefined on input line 627.
+LaTeX Warning: Reference `cor:explicit' on page 15 undefined on input line 669.
+
 
 
 
 [15]
 
-[16] (./alignment_geometry.aux)
+[16]
+
+[17] (./alignment_geometry.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -591,41 +580,42 @@ Package rerunfilecheck Warning: File `alignment_geometry.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `alignment_geometry.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  D2D566D7C555944676B1A8A56AE2FC42;7686.
+(rerunfilecheck)             Before: D2D566D7C555944676B1A8A56AE2FC42;7686
+(rerunfilecheck)             After:  535480BDB055B4311289D09BB831681E;8062.
  ) 
 Here is how much of TeX's memory you used:
- 10517 strings out of 474662
- 160288 string characters out of 5751108
- 563044 words of memory out of 5000000
- 33308 multiletter control sequences out of 15000+600000
- 573079 words of font info for 90 fonts, out of 8000000 for 9000
+ 10589 strings out of 474662
+ 161392 string characters out of 5751108
+ 564782 words of memory out of 5000000
+ 33358 multiletter control sequences out of 15000+600000
+ 573438 words of font info for 91 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 75i,13n,79p,1288b,587s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,13n,79p,1392b,523s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/iantodd/Library/texlive/2025basic/texmf-var/fonts/pk/ljfour/jknappen
 /ec/tcrm1200.600pk></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmbx10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025basic/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025basic/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025basic/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025basic/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025basic/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025basi
-c/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2025b
-asic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/202
-5basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
-/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texl
-ive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/
-texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/lo
-cal/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></us
-r/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10
-.pfb>
-Output written on alignment_geometry.pdf (16 pages, 257005 bytes).
+/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2025basic/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025basic/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2025basic/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025basic/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025basic/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025basi
+c/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2025b
+asic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/20
+25basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive
+/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texli
+ve/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/t
+exlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/loca
+l/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/
+local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></
+usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pf
+b></usr/local/texlive/2025basic/texmf-dist/fonts/type1/public/amsfonts/symbols/
+msbm10.pfb>
+Output written on alignment_geometry.pdf (17 pages, 278738 bytes).
 PDF statistics:
- 314 PDF objects out of 1000 (max. 8388607)
- 257 compressed objects within 3 object streams
- 133 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 471 PDF objects out of 1000 (max. 8388607)
+ 409 compressed objects within 5 object streams
+ 148 named destinations out of 1000 (max. 500000)
+ 313 words of extra memory for PDF output out of 10000 (max. 10000000)
 
